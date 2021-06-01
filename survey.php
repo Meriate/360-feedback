@@ -127,7 +127,7 @@ $aantal_vragen = count($surveys);
         <div id="layoutSidenav_content">
             <main>
                 <div class="container">
-                    <form id="regForm" action="/Einde.php" method="POST">
+                    <form id="regForm" action="/endsurvey.php" method="POST">
                         <h1><?php echo $vraag ?></h1>
                         <h3 id="pag_ratio"><?php echo "1/{$aantal_vragen}"; ?></h3>
 
