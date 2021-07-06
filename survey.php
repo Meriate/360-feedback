@@ -29,18 +29,13 @@ $aantal_vragen = count($surveys);
 <!DOCTYPE html>
 <html>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 <?php include "assets/lib/libraries_head.php"; ?>
 <link href="css/styles.css" rel="stylesheet" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
 
 <style>
-    #regForm {
-        background-color: #ffffff;
-        margin: 100px auto;
-        font-family: Raleway;
-        padding: 40px;
-        width: 70%;
+    #regForm .card {
+        padding: 32px;
         min-width: 300px;
     }
 
@@ -74,15 +69,10 @@ $aantal_vragen = count($surveys);
         border: none;
         display: flex;
         flex-direction: row;
-        justify-content: flex-start;
+        justify-content: space-between;
         break-before: always;
         margin: 0 0 3em 0;
     }
-
-    .Beoordeling1-1 {
-        margin: 0 1.81em 0 0;
-    }
-
     label {
         float: left;
         padding: 0 1em;
@@ -100,11 +90,33 @@ $aantal_vragen = count($surveys);
         font-size: 1em;
         opacity: 1;
     }
-</style>
+    .tab{
+      text-align: center;
+    }
+    .tab .badge{
+      margin-bottom: 12px;
+    }
+    .tab h5{
+      margin-bottom: 48px;
+    }
 
+    #pag_ratio{
+      position: absolute;
+      right: 1.25rem;
+      top: 1.25rem;
+      padding: 32px;
+    }
+    .Beoordeling1-name p{
+      margin-bottom:0;
+    }
+</style>
 <body class="sb-nav-fixed sb-nav-fixed sb-sidenav-toggled">
 
-    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+
+
+
+
+  <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <a class="navbar-brand" href="selectsurvey.php"><img src="../assets/img/meriate-logo-white.svg" alt="Meriate Logo"></a>
         <div class="input-group">
         </div>
@@ -119,27 +131,32 @@ $aantal_vragen = count($surveys);
         </ul>
     </nav>
 
+  <main>
+              <div class="container-fluid">
 
+                <br><br><br><br>
+                <div class="row justify-content-center">
+                  <div class="col-xl-6">
 
-    <div id="layoutSidenav">
-
-
-        <div id="layoutSidenav_content">
-            <main>
-                <div class="container">
-                    <form id="regForm" action="/Einde.php" method="POST">
-                        <h1><?php echo $vraag ?></h1>
+                        <form id="regForm" action="/Einde.php" method="POST">
+                          <div class="card mb-4">
+                            <div class="card-body">
+                        <h3><?php echo $vraag ?></h3>
                         <h3 id="pag_ratio"><?php echo "1/{$aantal_vragen}"; ?></h3>
 
                         <div class='Beoordeling1-name'>
                             <p><?php echo $employees['firstname'] . ' ' . $employees['lastname'] ?></p>
                         </div>
+                      </div></div>
+
+                      <div class="card mb-4">
+                        <div class="card-body">
                         <?php
                         foreach ($surveys as $fetch_question) {
                             $visible = ($surveys[0] == $fetch_question ? '' : 'display: none');
                             echo "<div class=\"tab\" style=\"{$visible}\">
-                                <div>{$fetch_question['attr_category']}</div>
-                                    <div>{$fetch_question['attributes']}</div>";
+                                <span class=\"badge badge-pill badge-primary\">{$fetch_question['attr_category']}</span>
+                                <h5>{$fetch_question['attributes']}</h5>";
 
                         ?>
 
@@ -171,11 +188,12 @@ $aantal_vragen = count($surveys);
                         }
                         ?>
 
-                        <div style="overflow:auto;">
-                            <div style="float:right;">
-                                <button type="button" class="btn-primary" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
-                                <button type="button" class="btn-primary" id="nextBtn" onclick="nextPrev(1)">Next</button>
-                            </div>
+                        <div style="text-align: center;">
+
+
+                                <button type="button" class="btn btn-lg btn-primary" id="nextBtn" onclick="nextPrev(1)">Next</button><br>
+                                <a style="margin-top: 12px; color: #1292EE;" type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</a>
+
                         </div>
                         <!-- Circles which indicates the steps of the form: -->
 
@@ -189,25 +207,31 @@ $aantal_vragen = count($surveys);
                         </div>
 
                     </form>
-                </div>
-            </main>
-
-            <footer class="py-4 bg-light mt-auto">
-                <div class="container-fluid">
-                    <div class="d-flex align-items-center justify-content-between small">
-                        <div class="text-muted">Copyright &copy; Meriate</div>
-                        <div>
-                            <a href="https://meriate.com/privacy-policy/" target="_blank">Privacy Policy</a>
-                            &middot;
-                            <a href="https://meriate.com/terms-conditions/" target="_blank">Terms &amp; Conditions</a>
-                        </div>
+                      </div>
                     </div>
+                  </div>
                 </div>
-            </footer>
-        </div>
-    </div>
+              </div>
+  </main>
 
-    <script>
+  <footer class="py-4 bg-light mt-auto" style="position: absolute; width: 100%; bottom: 0;">
+        <div class="container-fluid">
+            <div class="d-flex align-items-center justify-content-between small">
+                <div class="text-muted">Copyright &copy; Meriate</div>
+                <div>
+                    <a href="https://meriate.com/privacy-policy/" target="_blank">Privacy Policy</a>
+                    &middot;
+                    <a href="https://meriate.com/terms-conditions/" target="_blank">Terms &amp; Conditions</a>
+                </div>
+            </div>
+        </div>
+  </footer>
+
+
+
+
+
+  <script>
         var currentTab = 0; // Current tab is set to be the first tab (0)
 
         showTab(currentTab); // Display the current tab
@@ -301,10 +325,8 @@ $aantal_vragen = count($surveys);
             x.innerHTML = +x.innerHTML[0] + +n + '/' + tabs.length;
         }
     </script>
-
 </body>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 <script src="js/scripts.js"></script>
-
 </html>

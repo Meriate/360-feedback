@@ -48,10 +48,13 @@ $(document).ready(function(){
 </script>
 
 </head>
-
 <body class="sb-nav-fixed sb-nav-fixed sb-sidenav-toggled">
 
-    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+
+
+
+
+  <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <a class="navbar-brand" href="https://meriate.com"><img src="../assets/img/meriate-logo-white.svg" alt="Meriate Logo"></a>
         <div class="input-group">
         </div>
@@ -66,34 +69,24 @@ $(document).ready(function(){
         </ul>
     </nav>
 
-
-  <div id="layoutSidenav_content">
-
-    <main>
+  <main>
       <div class="container-fluid">
 
         <br><br><br><br>
-        <div class="row">
-            <div class="col-lg-12">
+        <div class="row justify-content-center">
+            <div class="col-lg-4">
               <div class="card mb-4">
                   <div class="card-header">
-                      <i class="fas fa-edit mr-1"></i>
-                      Employee surveys
+                      <h5>Employee surveys</h5>
                   </div>
                   <div class="card-body">
-
 
                     <form action="/survey.php" method="post">
                       <table class="perstabel" id="vragentabel">
                         <!-- Tabel headers -->
                         <tr class="tr_header">
                           <th></th>
-                          <th>#</th>
-                          <?php
-                          foreach ($show_columns as $columnname) {
-                            echo '<th>' . $columnname . '</th>';
-                          }
-                          ?>
+
 
                         <tr>
 
@@ -126,7 +119,7 @@ $(document).ready(function(){
 
                       </table>
 
-                      <input type="submit" disabled id="Go_to_Survey" value="Go to survey">
+                      <span style="margin-top: 20px; float: right;">Select a survey to continue <input style="margin-left: 12px;" class="btn btn-lg btn-primary" type="submit" disabled id="Go_to_Survey" value="Go to survey"></span>
                     </form>
 
 
@@ -139,10 +132,9 @@ $(document).ready(function(){
         </div>
 
       </div>
-    </main>
+  </main>
 
-<br>
-    <footer class="py-4 bg-light mt-auto" style="position: absolute; width: 100%; bottom: 0;">
+  <footer class="py-4 bg-light mt-auto" style="position: absolute; width: 100%; bottom: 0;">
         <div class="container-fluid">
             <div class="d-flex align-items-center justify-content-between small">
                 <div class="text-muted">Copyright &copy; Meriate</div>
@@ -155,17 +147,11 @@ $(document).ready(function(){
         </div>
     </footer>
 
-  </div>
 
-
-</div>
 
 
 
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-
   <script src="js/scripts.js"></script>
-
 </body>
-
 </html>
